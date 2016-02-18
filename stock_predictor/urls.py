@@ -20,7 +20,16 @@ from news_check import views
 
 urlpatterns = [
     url(r'^$', views.index, name='home'),
-    url(r'^stocks/$', views.stocks, name='stocks'),
+    url(
+        r'^stocks/$', 
+        views.stocks, 
+        name='stocks'
+    ),
+    url(
+        r'^stocks/(?P<symbol>[-\w]+)/$', 
+        views.stock_detail, 
+        name='stock_detail'
+    ),
     url(
         r'^about/$', 
         TemplateView.as_view(template_name='about.html'), 

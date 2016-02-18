@@ -16,3 +16,11 @@ def stocks(request):
         'stocks.html',
         {'stocks': stocks}
     )
+
+def stock_detail(request, symbol):
+    stock = Stock.objects.get(symbol=symbol)
+    return render(
+        request,
+        'stocks/stock_detail.html',
+        {'stock': stock}
+    )
