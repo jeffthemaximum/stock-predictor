@@ -1,9 +1,273 @@
 {% extends 'base.html' %}
+{% load staticfiles%}
 {% block title %}
     Homepage - {{ block.super }}
 {% endblock title %}
 
 {% block content %}
-    <h1>Hello World!</h1>
-    <p>I am a basic website.</p>
+<div class="container">
+    <!--rev slider start-->
+    <div class="fullwidthbanner">
+        <div class="tp-banner">
+            <ul>
+                <!-- SLIDE -->
+                <li data-transition="fade" data-slotamount="5" data-masterspeed="1000" data-title="Powerful Theme">
+                    <!-- MAIN IMAGE -->
+                    <img src="{% static 'img/bg-3.jpg' %}"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+                    <div class="caption title-2 sft"
+                         data-x="50"
+                         data-y="160"
+                         data-speed="1000"
+                         data-start="1000"
+                         data-easing="easeOutExpo">
+                        We predict the stock market <br>
+                        with news articles 
+                    </div>
+
+
+
+                    <div class="caption text sfl"
+                         data-x="50"
+                         data-y="310"
+                         data-speed="1000"
+                         data-start="1800"
+                         data-easing="easeOutExpo">
+                        Stock value is effected by news information.  <br>
+                        We analyze that information and help you make smart investment decisions.  
+                    </div>
+                    <div class="caption sfb rev-buttons tp-resizeme"
+                         data-x="50"
+                         data-y="380"
+                         data-speed="500"
+                         data-start="1800"
+                         data-easing="Sine.easeOut">
+                        <a href="#" class="btn btn-theme-bg btn-lg">Go premium</a>
+                    </div>
+
+                    <div class="caption sfb rev-buttons tp-resizeme"
+                         data-x="250"
+                         data-y="380"
+                         data-speed="500"
+                         data-start="2100"
+                         data-easing="Sine.easeOut">
+                        <a href="{% url 'stocks' %}" class="btn border-white btn-lg">Get started for free</a>
+                    </div>
+
+                </li>
+                <!-- SLIDE -->
+                <li data-transition="fade" data-slotamount="5" data-masterspeed="1000" data-title="Unique Theme">
+                    <!-- MAIN IMAGE -->
+                    <img src="{% static 'img/bg-4.jpg' %}"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+
+
+
+
+                    <div class="caption text-center-top sft"
+                         data-x="center"
+                         data-y="210"
+                         data-speed="1000"
+                         data-start="1400"
+                         data-easing="easeOutExpo">
+                        Crowd-sourced stock predictions
+                    </div>
+
+                    <div class="caption text-center-btm sfr text-center"
+                         data-x="center"
+                         data-y="265"
+                         data-speed="1000"
+                         data-start="1600"
+                         data-easing="easeOutExpo">
+
+                        Don't trust over-priced experts to give you unreliable predictions<br>  We mine news information and make predictions for you.
+
+                    </div>
+                    <div class="caption sfb rev-buttons tp-resizeme"
+                         data-x="center"
+                         data-y="350"
+                         data-speed="500"
+                         data-start="1800"
+                         data-easing="Sine.easeOut">
+                        <a href="#" class="btn btn-theme-bg btn-lg">Go premium</a>
+                    </div>
+
+                    <div class="caption sfb rev-buttons tp-resizeme"
+                         data-x="center"
+                         data-y="420"
+                         data-speed="500"
+                         data-start="1800"
+                         data-easing="Sine.easeOut">
+                        <a href="{% url 'stocks' %}" class="btn border-white btn-lg">Get started for free</a>
+                    </div>
+                </li>
+                <!-- SLIDE -->
+                <li data-transition="fade" data-slotamount="5" data-masterspeed="1000" data-title="Multipurpose">
+                    <!-- MAIN IMAGE -->
+                    <img src="{% static 'img/bg-1.jpg' %}"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+                    <!-- LAYER NR. 1 -->
+                    <div class="caption left-tile-text sfr tp-resizeme"
+                         data-x="40"
+                         data-y="110" 
+                         data-speed="600"
+                         data-start="1200"
+                         data-end="9400"
+                         data-endspeed="600">Stock information for anyone
+                    </div>
+
+                    <!-- LAYER NR. 2 -->
+                    <div class="caption medium_bg_darkblue sfl medium tp-resizeme"
+                         data-x="40"
+                         data-y="170" 
+                         data-speed="600"
+                         data-start="1600"
+                         data-end="9400"
+                         data-endspeed="600"><i class="fa fa-check"></i>
+                    </div>
+
+                    <!-- LAYER NR. 3 -->
+                    <div class="caption modern_big_redbg sfb medium tp-resizeme"
+                         data-x="90"
+                         data-y="170" 
+                         data-speed="600"
+                         data-start="1600"
+                         data-end="9400"
+                         data-endspeed="600">Access to 500 companies for free
+                    </div>
+
+                    <!-- LAYER NR. 4 -->
+                    <div class="caption medium_bg_darkblue sfl medium tp-resizeme"
+                         data-x="40"
+                         data-y="220" 
+                         data-speed="600"
+                         data-start="1800"
+                         data-end="9400"
+                         data-endspeed="600"><i class="fa fa-check"></i>
+                    </div>
+
+                    <!-- LAYER NR. 5 -->
+                    <div class="caption modern_big_redbg sfb medium tp-resizeme"
+                         data-x="90"
+                         data-y="220" 
+                         data-speed="600"
+                         data-start="1800"
+                         data-end="9400"
+                         data-endspeed="600">Over 2000 companies' data for premium members
+                    </div>
+
+                    <!-- LAYER NR. 6 -->
+                    <div class="caption medium_bg_darkblue sfl medium tp-resizeme"
+                         data-x="40"
+                         data-y="270" 
+                         data-speed="600"
+                         data-start="2000"
+                         data-end="9400"
+                         data-endspeed="600"><i class="fa fa-check"></i>
+                    </div>
+
+                    <!-- LAYER NR. 7 -->
+                    <div class="caption modern_big_redbg sfb medium tp-resizeme"
+                         data-x="90"
+                         data-y="270" 
+                         data-speed="600"
+                         data-start="2000"
+                         data-end="9400"
+                         data-endspeed="600">Easily find the hottest companies
+                    </div>
+
+                    <!-- LAYER NR. 8 -->
+                    <div class="caption medium_bg_darkblue sfl medium tp-resizeme"
+                         data-x="40"
+                         data-y="320" 
+                         data-speed="600"
+                         data-start="2200"
+                         data-end="9400"
+                         data-endspeed="600"><i class="fa fa-check"></i>
+                    </div>
+
+                    <!-- LAYER NR. 9 -->
+                    <div class="caption modern_big_redbg sfb medium tp-resizeme"
+                         data-x="90"
+                         data-y="320" 
+                         data-speed="600"
+                         data-start="2200"
+                         data-end="9400"
+                         data-endspeed="600">Easy to use interface
+                    </div>
+
+                    <!-- LAYER NR. 10 -->
+                    <div class="caption modern_big_redbg sfb medium tp-resizeme"
+                         data-x="40"
+                         data-y="370" 
+                         data-speed="600"
+                         data-start="2400"
+                         data-end="9400"
+                         data-endspeed="600">And Much More...
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+    </div><!--full width banner-->
+    <!--revolution end-->
+
+     <div class="divide60"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <div class="center-heading">
+                        <h2>What <strong>we do</strong> </h2>
+                        <span class="center-line"></span>
+                        <p class="sub-text margin40">
+                            We predict the stock market with news articles. We gather what the news and social media is saying about a company, pass it through cool algorithms, and use it to predict future stock prices. Academic research proves our methods outperform other stock prediction strategies. It's easy to make money with us. 
+                        </p>
+                    </div>
+                </div>
+
+            </div><!--center heading end-->
+            <div class="divide50"></div>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 margin30">
+                    <div class="colored-boxed green">
+                        <i class="pe-7s-magic-wand"></i>
+                        <h3>Checkout the hottest stocks</h3>
+                        <span class="center-line"></span>
+                        <p>
+                            Get started here to see what companies are poised to gain the most value. 
+                        </p>
+                    </div>
+                </div><!--colored boxed col end-->
+                <div class="col-md-3 col-sm-6 margin30">
+                    <div class="colored-boxed dark">
+                        <i class="pe-7s-phone"></i>
+                        <h3>Ultra responsive</h3>
+                        <span class="center-line"></span>
+                        <p>
+                            Nullam vulputate lorem ut leo. Sed volutpat. Etiam non pede. Nullam et mauris. 
+                        </p>
+                    </div>
+                </div><!--colored boxed col end-->
+                <div class="col-md-3 col-sm-6 margin30">
+                    <div class="colored-boxed blue">
+                        <i class="pe-7s-like"></i>
+                        <h3>made with love</h3>
+                        <span class="center-line"></span>
+                        <p>
+                            Nullam vulputate lorem ut leo. Sed volutpat. Etiam non pede. Nullam et mauris. 
+                        </p>
+                    </div>
+                </div><!--colored boxed col end-->
+                <div class="col-md-3 col-sm-6 margin30">
+                    <div class="colored-boxed red">
+                        <i class="pe-7s-folder"></i>
+                        <h3>Premium plugins</h3>
+                        <span class="center-line"></span>
+                        <p>
+                            Nullam vulputate lorem ut leo. Sed volutpat. Etiam non pede. Nullam et mauris. 
+                        </p>
+                    </div>
+                </div><!--colored boxed col end-->
+            </div>
+        </div><!--services container-->
+
+    </div>
+</div>
 {% endblock content %}
