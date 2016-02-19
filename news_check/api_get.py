@@ -27,16 +27,15 @@ def get_api_string_by_keyword(keyword):
     return my_dict
 
 def convert_str_to_dict(my_json):
-    acceptable_str = my_json.text.replace("'", "\"")
-    r = json.loads(acceptable_str)
+    r = json.loads(my_json.text)
     return r
 
-def run_api():
+def run_api(company_name):
     '''
     returns a json object from api with title, text, and keywords for
     10 most recent articles about a company
     '''
-    my_dict = get_api_string_by_keyword('walmart')
+    my_dict = get_api_string_by_keyword(company_name)
     api_str = build_api_string(**my_dict)
     json_str = call_api(api_str)
     r = convert_str_to_dict(json_str)
@@ -79,7 +78,7 @@ def split_strings_into_words(my_list):
     words = [item for sublist in lists for item in sublist]
     return words
 
-def get_text(my_json):
+def get_texts(my_json):
     '''
     takes json object with text key and list of texts as strings
     returns just list of words in all texts
@@ -97,9 +96,42 @@ def get_titles(my_json):
     titles = split_strings_into_words(titles)
     return titles
 
-my_json = read_txt('test_data_str.json')
-my_json = parse_json(my_json)
-titles = get_titles(my_json)
-texts = get_text(my_json)
-print(titles)
-print(texts)
+def run_api_parse_json(company):
+    my_json = run_api(company)
+    parsed = parse_json(my_json)
+    return parsed
+
+def loop_over_companies_and_get_json():
+    companies = ['apple', 'google']
+    for company in companies:
+        # gets company data as dict
+        parsed_json = run_api_parse_json(company)
+        # gets words from article text as list
+        text = get_texts(parsed_json)
+        # gets words from article titles as list
+        titles = get_titles(parsed_json)
+        print("titles" + str(titles))
+        print("\n\n\n\n\n\n")
+        print("text" + str(text))
+        print("\n\n\n\n\n\n")
+
+# build api string
+    # get_api_string_by_keyword
+    # build_api_string
+
+# call api
+    # call_api
+
+# handle response
+    # convert_str_to_dict
+    # parse_json
+
+# extract data from response
+    # loop_over_companies_and_get_json
+
+# my_json = read_txt('test_data_str.json')
+# my_json = parse_json(my_json)
+# titles = get_titles(my_json)
+# texts = get_text(my_json)
+# print(titles)
+loop_over_companies_and_get_json()
