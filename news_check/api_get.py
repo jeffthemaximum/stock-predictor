@@ -3,12 +3,14 @@ import pudb
 import json
 import re, string
 from secrets import API_KEY
+from test_data_lists import test_text, test_titles
 
 def build_api_string(*args, **kwargs):
     api_base = 'https://gateway-a.watsonplatform.net/calls/data/GetNews?'
     for key in kwargs:
         api_base += '&'
         api_base += kwargs[key]
+    print(api_base)
     return api_base
 
 def call_api(api_string):
@@ -102,7 +104,7 @@ def run_api_parse_json(company):
     return parsed
 
 def loop_over_companies_and_get_json():
-    companies = ['apple', 'google']
+    companies = ['boeing']
     for company in companies:
         # gets company data as dict
         parsed_json = run_api_parse_json(company)
@@ -114,6 +116,15 @@ def loop_over_companies_and_get_json():
         print("\n\n\n\n\n\n")
         print("text" + str(text))
         print("\n\n\n\n\n\n")
+    return {'text': text, 'titles': titles}
+
+
+def get_words(filename):
+    emotion_words = []
+    with open(filename, "r") as words:
+        for word in words.readlines():
+            emotion_words.append(word.rstrip())
+    return emotion_words
 
 # build api string
     # get_api_string_by_keyword
@@ -134,4 +145,24 @@ def loop_over_companies_and_get_json():
 # titles = get_titles(my_json)
 # texts = get_text(my_json)
 # print(titles)
-loop_over_companies_and_get_json()
+
+
+# loop_over_companies_and_get_json()
+
+happy = get_words('happy.txt')
+sad = get_words('sad.txt')
+
+# words = loop_over_companies_and_get_json()
+text = test_text
+
+def check_emotion(words, emotion):
+    count = 0
+    for word in words:
+        if word in emotion:
+            print(word)
+            count += 1
+    return count
+
+check_emotion(text, happy)
+print("\n\n\n")
+check_emotion(text, sad)
