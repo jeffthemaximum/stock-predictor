@@ -2,8 +2,8 @@ import requests
 import pudb
 import json
 import re, string
-from helpers.code.secrets import API_KEY
-from helpers.data.test_data_lists import test_text, test_titles
+from secrets import API_KEY
+from test_data_lists import test_text, test_titles
 
 def build_api_string(*args, **kwargs):
     api_base = 'https://gateway-a.watsonplatform.net/calls/data/GetNews?'
@@ -149,8 +149,8 @@ def get_words(filename):
 
 # loop_over_companies_and_get_json()
 
-happy = get_words('helpers/data/happy.txt')
-sad = get_words('helpers/data/sad.txt')
+happy = get_words('happy.txt')
+sad = get_words('sad.txt')
 
 # words = loop_over_companies_and_get_json()
 text = test_text
