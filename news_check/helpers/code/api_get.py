@@ -2,8 +2,8 @@ import requests
 import pudb
 import json
 import re, string
-from secrets import API_KEY
-from test_data_lists import test_text, test_titles
+from news_check.helpers.code.secrets import API_KEY
+from news_check.helpers.data.test_data_lists import test_text, test_titles
 
 def build_api_string(*args, **kwargs):
     api_base = 'https://gateway-a.watsonplatform.net/calls/data/GetNews?'
@@ -17,7 +17,23 @@ def call_api(api_string):
     r = requests.get(api_string)
     return r
 
+def build_multi_company_query_param(my_str):
+    '''
+    takes a string like 'jeff is cool'
+    and makes it like 'A[jeff^is^cool]'
+    cuz thats how alchemy needs it
+    '''
+    my_lst = my_str.split()
+    alchemy_str = 'A['
+    for i in range(len(my_lst)):
+        alchemy_str += my_lst[i]
+        if i != len(my_lst)-1:
+            alchemy_str += '^'
+    alchemy_str += ']'
+    return alchemy_str
+
 def get_api_string_by_keyword(keyword):
+    keyword = build_multi_company_query_param(keyword) if ' ' in keyword else keyword
     my_dict = {}
     my_dict['output'] = 'outputMode=json'
     my_dict['start'] = 'start=now-30d'
@@ -103,19 +119,19 @@ def run_api_parse_json(company):
     parsed = parse_json(my_json)
     return parsed
 
-def loop_over_companies_and_get_json():
-    companies = ['boeing']
-    for company in companies:
-        # gets company data as dict
-        parsed_json = run_api_parse_json(company)
-        # gets words from article text as list
-        text = get_texts(parsed_json)
-        # gets words from article titles as list
-        titles = get_titles(parsed_json)
-        print("titles" + str(titles))
-        print("\n\n\n\n\n\n")
-        print("text" + str(text))
-        print("\n\n\n\n\n\n")
+
+
+def text_and_title_for_company(company):
+    # gets company data as dict
+    parsed_json = run_api_parse_json(company)
+    # gets words from article text as list
+    text = get_texts(parsed_json)
+    # gets words from article titles as list
+    titles = get_titles(parsed_json)
+    # print("titles" + str(titles))
+    # print("\n\n\n\n\n\n")
+    # print("text" + str(text))
+    # print("\n\n\n\n\n\n")
     return {'text': text, 'titles': titles}
 
 
@@ -149,20 +165,22 @@ def get_words(filename):
 
 # loop_over_companies_and_get_json()
 
-happy = get_words('happy.txt')
-sad = get_words('sad.txt')
 
-# words = loop_over_companies_and_get_json()
-text = test_text
+happy = get_words('news_check/helpers/data/happy.txt')
+sad = get_words('news_check/helpers/data/sad.txt')
+
+# gets dict of word data with titles and text
+words = text_and_title_for_company('amazon')
+# text = test_text
 
 def check_emotion(words, emotion):
     count = 0
     for word in words:
         if word in emotion:
-            print(word)
             count += 1
     return count
 
-check_emotion(text, happy)
+
+print("happy: " + str(check_emotion(words['text'], happy)))
 print("\n\n\n")
-check_emotion(text, sad)
+print("sad: " + str(check_emotion(words['text'], sad)))
