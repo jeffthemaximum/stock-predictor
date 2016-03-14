@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ stock.full_name }} - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h1>Stock:</h1>
+    <h2>{{ company.full_name }}</h2>
+    <p>{{ company.symbol }}</p>
+    <p>{{ company.industry }}</p>
+    <p>{{ company.lat }}</p>
+    <p>{{ company.lon }}</p>
+    <p>{{ company.state }}</p>
+    <p>{{ company.city }}</p>
+    <form action="{% url 'company:update_vibe' symbol=company.symbol %}">
+        <input type="submit" value="Submit">
+    </form>
+    <p>{{ vibe.happy_title_count }}</p>
+    <p>{{ vibe.happy_text_count }}</p>
+    <p>{{ vibe.sad_title_count }}</p>
+    <p>{{ vibe.sad_text_count }}</p>
+    <p>{{ vibe.updated_at }}</p>
+</div>
+{% endblock content %}

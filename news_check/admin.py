@@ -1,13 +1,14 @@
 from django.contrib import admin
 
 # import models
-from news_check.models import Stock
+from news_check.models import Company
+
 
 # setup automated slug creation
-class StockAdmin(admin.ModelAdmin):
-    model = Stock
+class CompanyAdmin(admin.ModelAdmin):
+    model = Company
     list_display = ('full_name', 'symbol',)
     prepopulated_fields = {'slug': ('full_name',)}
 
 # register it
-admin.site.register(Stock, StockAdmin)
+admin.site.register(Company, CompanyAdmin)

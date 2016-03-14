@@ -1,0 +1,141 @@
+{
+  "totalTransactions": "412",
+  "status": "OK",
+  "result": {
+    "status": "OK",
+    "docs": [
+      {
+        "id": "NTkzMjgzODI3M3wxNDU0MDIxODYy",
+        "source": {
+          "enriched": {
+            "url": {
+              "url": "http://thesouthern.com/business/technology/amazon-net-income-doubles-but-its-results-still-fall-short/article_b5b92dd3-cfe0-590c-b70f-5985f45a4de1.html",
+              "title": "Amazon net income doubles, but its results still fall short",
+              "text": "Amazon net income doubles, but its results still fall short | Technology | thesouthern.com\n  \n\n                                             \n                 You are the owner of this article. Edit Article                                               Add New Article                                      \n                 \n             \n         \n                                                    \n                \n\n                   \n\n                               \n                                        \n                                                 \n                               \n                                \n\n \n  \n          Sign Up \n                                              Log In                     \n         \n\n                                                      Dashboard\n                       Logout\n                 \n\n                                                                                                                                                                                      \n                 My Account\n                      Dashboard\n                      Profile\n                      Saved items\n                                           Logout\n                 \n\n         \n\n \n       \n         \n\nCustomer Service\u00a0\u00a0eEdition\n      \n         \n\n\n                                                                                                                                      News                         \n                     \nLocal \nCrime \nState / Region \nEducation \nEnvironment \nNation \nWorld \n\n\n                                                                                                                     Sports                         \n                     \nSIU \nHigh school \nSports columns \nNational \nPhotos \n\n\n                                                                                                                     Opinion                         \n                     \nVoice of The Southern \nVoice of the Reader \nColumns \nBlogs \nGuest opinion \n\n\n                                                                                                                     Business                         \n                     \nLocal business \nNational/International Business \nSouthern Business Journal \nAchievements \nPermits \nBankruptcies \n\n\n                                              Obituaries                         \n                     \n\n                                                                                                                     Entertainment                         \n                     \nThings to do \nFood \nScene618 \nOutdoors \nAnnouncements \nBlogs \nLife \n\n\n                                              Photos                         \n                     \n\n                                              Calendar                         \n                     \n\n                                              Life & Style Magazine                         \n                     \n\n                                                                                                                     Classifieds                         \n                     \nJobs \nReal estate \nAuto \nAuctions \nYard sales \nPets \nHomes \nWeekly Ads \n\n\n                                              Archives                         \n                     \n\n                                              Contests                         \n                     \n\n                                                                                                                     Contact us                         \n                     \nSubmit a press release \nSubmit a letter to the editor \nSubmit a social announcement \nSubmit a prep sports score form\n\n\n\n\n                                  \n                 \n                                                      \n                                                                                                                         Toggle navigation                                                                                                    Menu                                                                                                 \n         \n         \n     \n         \n\n\n                                                                                                                                                                                                                                                                                                                                 Search                                                                                                                                       \n                                         \n                                                                      \n                             \n\n                     \n\n                                                                                                                         Search                           \n     \n \n\n\n     \n\n                                                                                                                                                                                                                         Log In Using Your Account\n                                         Log In                                     \n                                 \n                                                                                                               Don't have an account? ..."
+            }
+          }
+        },
+        "timestamp": 1454021862
+      },
+      {
+        "id": "NDkyNDQyNjc5NnwxNDU0MDIxNjgy",
+        "source": {
+          "enriched": {
+            "url": {
+              "url": "http://www.stuff.co.nz/business/world/76384497/Amazon-sales-soar-but-miss-Wall-Street-expectations",
+              "title": "Amazon sales soar",
+              "text": "Amazon.com's sales soared in the critical holiday quarter, but fell short of Wall Street expectations, as a stronger dollar ate into foreign sales, leading the stock to a tumble in after-hours trading. Revenue in the fourth quarter reached $US35.7 billion ($NZ54 billion), up 22 percent from the same quarter in 2014; compared with analyst estimates of $35.93 billion. ..."
+            }
+          }
+        },
+        "timestamp": 1454021682
+      },
+      {
+        "id": "NDg0ODYyNzQ5M3wxNDU0MDIxNjIx",
+        "source": {
+          "enriched": {
+            "url": {
+              "url": "http://www.wsbtv.com/news/ap/business/amazon-shares-fall-14-percent-as-profit-falls-shor/nqFCt/",
+              "title": "Amazon shares fall 14 percent as profit falls short",
+              "text": "Amazon shares tumbled in aftermarket trading after the e-commerce company said its profit more than doubled, but still fell well short of analyst expectations. Amazon's strategy has long been to invest most of the money it makes back into its businesses, particularly by expanding offerings in its $99-a-year Prime loyalty program and its cloud-computing business, called Amazon Web Services. ..."
+            }
+          }
+        },
+        "timestamp": 1454021621
+      },
+      {
+        "id": "NDgzODkwMDkwOHwxNDU0MDIxNDM4",
+        "source": {
+          "enriched": {
+            "url": {
+              "url": "http://www.techworld.com.au/article/593024/aws-pumps-up-amazon-earnings/",
+              "title": "AWS pumps up Amazon earnings",
+              "text": "Just minutes before the close of the stock market on Thursday Amazon\u2019s stock shot up almost 9% to close the day at $635 per share. Investors were giddy about the company\u2019s forthcoming earnings news. ..."
+            }
+          }
+        },
+        "timestamp": 1454021438
+      },
+      {
+        "id": "NDg1MzYzNzYwMnwxNDU0MDIxNDIy",
+        "source": {
+          "enriched": {
+            "url": {
+              "url": "http://www.telegram.com/article/ZZ/20160128/NEWS/301289888/-1/consumer",
+              "title": "Amazon shares fall 14 percent as profit falls short",
+              "text": "SEATTLE (AP) \" Amazon shares tumbled in aftermarket trading after the e-commerce company said its profit more than doubled, but still fell well short of analyst expectations. Amazon's strategy has long been to invest most of the money it makes back into its businesses, particularly by expanding offerings in its $99-a-year Prime loyalty program and its cloud-computing business, called Amazon Web Services. ..."
+            }
+          }
+        },
+        "timestamp": 1454021422
+      },
+      {
+        "id": "NDg0NTA3NjM0MHwxNDU0MDIxMjU3",
+        "source": {
+          "enriched": {
+            "url": {
+              "url": "http://www.cnet.com/news/your-impulse-buys-are-costing-amazon-a-fortune/",
+              "title": "Your impulse buys are costing Amazon a fortune",
+              "text": "You don't really need that $12 package of Kleenex tissues to arrive in 48 hours, yet you insist on ordering it through Amazon Prime. You have no idea how much it's costing Amazon. ..."
+            }
+          }
+        },
+        "timestamp": 1454021257
+      },
+      {
+        "id": "NDgzOTgyOTM5N3wxNDU0MDIxMTE4",
+        "source": {
+          "enriched": {
+            "url": {
+              "url": "http://www.bloomberg.com/news/audio/2016-01-28/bloomberg-s-rana-and-waral-on-microsoft-amazon-eps-audio-",
+              "title": "Bloomberg\u2019s Rana and Waral on Microsoft, Amazon EPS (Audio)",
+              "text": " Connecting decision makers to a dynamic network of information, people and ideas, Bloomberg quickly and accurately delivers business and financial information, news and insight around the world. GUEST: Bloomberg Intelligence\u2019s Anurag Rana, Senior Analyst of Software and IT Services, and Jitendra Waral, Global Internet and Consumer Electronics Analyst, weigh in on Microsoft and Amazon earnings. ..."
+            }
+          }
+        },
+        "timestamp": 1454021118
+      },
+      {
+        "id": "NDg0OTA2NTc4MHwxNDU0MDIwOTY2",
+        "source": {
+          "enriched": {
+            "url": {
+              "url": "http://www.yakimaherald.com/news/business/national/amazon-misses-street-q-forecasts/article_1d521e86-e5c3-5057-bace-fcad22f8f13b.html",
+              "title": "Amazon misses Street 4Q forecasts",
+              "text": "Partly cloudy this evening, then becoming cloudy after midnight. Low 32F. Winds light and variable. ..."
+            }
+          }
+        },
+        "timestamp": 1454020966
+      },
+      {
+        "id": "NDgzMjg4NjgwN3wxNDU0MDIwODU3",
+        "source": {
+          "enriched": {
+            "url": {
+              "url": "http://www.dailyherald.com/article/20160128/business/301289781",
+              "title": "Amazon shares fall 14 percent as profit falls short",
+              "text": "SEATTLE -- Amazon shares tumbled in aftermarket trading after the e-commerce company said its profit more than doubled, but still fell well short of analyst expectations. Amazon's strategy has long been to invest most of the money it makes back into its businesses, particularly by expanding offerings in its $99-a-year Prime loyalty program and its cloud-computing business, called Amazon Web Services. ..."
+            }
+          }
+        },
+        "timestamp": 1454020857
+      },
+      {
+        "id": "NDgzNjgwNjI5NXwxNDU0MDIwODM5",
+        "source": {
+          "enriched": {
+            "url": {
+              "url": "http://www.patriotledger.com/article/ZZ/20160128/NEWS/301289888/-1/sports",
+              "title": "Amazon shares fall 14 percent as profit falls short",
+              "text": "SEATTLE (AP) \" Amazon shares tumbled in aftermarket trading after the e-commerce company said its profit more than doubled, but still fell well short of analyst expectations. Amazon's strategy has long been to invest most of the money it makes back into its businesses, particularly by expanding offerings in its $99-a-year Prime loyalty program and its cloud-computing business, called Amazon Web Services. ..."
+            }
+          }
+        },
+        "timestamp": 1454020839
+      }
+    ],
+    "next": "MTEzMzY4NzU2Njc2NDg0NDc4OXx8MTIxNzA0ODc3Njg3MzY1NTk4MXx8MTQzODE3MjgyNDQzNTkwMjgxNnx8NDk0MTcxNDkyNTY3MzE1MTA2MXx8NjQwMjcwOTgxMTA3MjgzMTY4Mnx8Njg5NzA3OTM2NzAwMTQ2OTY3MnxORGd6TWpnNE5qZ3dOM3d4TkRVME1ESXdPRFUzfDkzNzgwMjk4NTU1ODgyNTkzNzB8fDExNDAyNDEzMDA5MDA1NjcxMzYyfHwxMjM3OTAxNDk3NzgxMzE2MDU2OHx8MTI0MTE3NzM2MTU2NTIzNjg2NzF8fDEzMjAzNDY4MTU0NTk4OTM3MDQ1fE5EZzBPVEEyTlRjNE1Id3hORFUwTURJd09UWTJ8MTMyODYyNzM3ODkyMDI2NjcxODl8TkRnME5UQTNOak0wTUh3eE5EVTBNREl4TWpVM3wxMzYwNTE5MzQyMTQ2ODAxMDIyMXx8MTQ0MjI2MzMwMTM1NzE1ODM2Mjd8fDE3MjkwMTM2OTkyMjcxMzkwOTM2fHwxNzM1NTM1NzA1NDQ1MDE2ODQ0NXxORGd6Tmpnd05qSTVOWHd4TkRVME1ESXdPRE01fDE4Mzc1MTI3NjU3NDczMjEzOTM1fA"
+  },
+  "usage": "By accessing AlchemyAPI or using information generated by AlchemyAPI, you are agreeing to be bound by the AlchemyAPI Terms of Use: http://www.alchemyapi.com/company/terms.html"
+}

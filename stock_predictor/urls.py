@@ -1,4 +1,4 @@
-"""stock_predictor URL Configuration
+"""company_predictor URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.8/topics/http/urls/
@@ -19,20 +19,14 @@ from django.views.generic import TemplateView
 from news_check import views
 
 urlpatterns = [
-    url(r'^$', views.index, name='home'),
     url(
-        r'^stocks/$', 
-        views.stocks, 
-        name='stocks'
+        r'^$',
+        TemplateView.as_view(template_name='index.html'),
+        name='home'
     ),
     url(
-        r'^stocks/(?P<symbol>[-\w]+)/$', 
-        views.stock_detail, 
-        name='stock_detail'
-    ),
-    url(
-        r'^about/$', 
-        TemplateView.as_view(template_name='about.html'), 
+        r'^about/$',
+        TemplateView.as_view(template_name='about.html'),
         name='about'
     ),
     url(
@@ -40,5 +34,6 @@ urlpatterns = [
         TemplateView.as_view(template_name='contact.html'),
         name='contact'
     ),
+    url(r'^company/', include('news_check.urls', namespace='company')),
     url(r'^admin/', include(admin.site.urls)),
 ]
