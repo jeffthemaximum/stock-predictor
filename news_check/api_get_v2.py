@@ -4,7 +4,7 @@ import re
 import pudb
 from news_check.helpers.code.secrets import API_KEY
 from news_check.models import Vibe, Company
-from watson_developer_cloud import AlchemyDataNewsV1
+from watson_developer_cloud import AlchemyDataNewsV1, watson_developer_cloud_service
 
 
 class GetApi:
@@ -65,7 +65,6 @@ class GetApi:
             query_fields={
                 'q.enriched.url.enrichedTitle.entities.entity':
                 '|text=' + self.company + ',type=company|'})
-        pu.db
         return api.convert_str_to_dict(json.dumps(results, indent=2))
 
 
@@ -334,25 +333,34 @@ class RunData:
             raise ValueError('invalid source argument')
 
     def run_txt(self):
-        api = GetApi(source=self.source, txt_file="news_check/helpers/data/test_pip_data.json").run_api()
-        text_titles = TextTitle(api).text_and_title_for_company()
-        algorithm = Algorithm(text_titles)
-        print(dir(algorithm))
-        if self.save:
-            algorithm.save_to_db()
+        try:
+            api = GetApi(source=self.source, txt_file="news_check/helpers/data/test_pip_data.json").run_api()
+            text_titles = TextTitle(api).text_and_title_for_company()
+            algorithm = Algorithm(text_titles)
+            print(dir(algorithm))
+            if self.save:
+                algorithm.save_to_db()
+        except Exception as e:
+            print(e)
 
     def run_pip(self):
-        api = GetApi(source=self.source, company=self.company).run_api()
-        text_titles = TextTitle(api).text_and_title_for_company()
-        algorithm = Algorithm(text_titles)
-        print(dir(algorithm))
-        if self.save:
-            algorithm.save_to_db()
+        try:
+            api = GetApi(source=self.source, company=self.company).run_api()
+            text_titles = TextTitle(api).text_and_title_for_company()
+            algorithm = Algorithm(text_titles)
+            print(dir(algorithm))
+            if self.save:
+                algorithm.save_to_db()
+        except watson_developer_cloud_service.WatsonException as e:
+            print(e)
 
     def run_api(self):
-        api = GetApi(source=self.source, company=self.company).run_api()
-        text_titles = TextTitle(api).text_and_title_for_company()
-        algorithm = Algorithm(text_titles)
-        print(dir(algorithm))
-        if self.save:
-            algorithm.save_to_db()
+        try:
+            api = GetApi(source=self.source, company=self.company).run_api()
+            text_titles = TextTitle(api).text_and_title_for_company()
+            algorithm = Algorithm(text_titles)
+            print(dir(algorithm))
+            if self.save:
+                algorithm.save_to_db()
+        except TypeError as e:
+            print(e)
