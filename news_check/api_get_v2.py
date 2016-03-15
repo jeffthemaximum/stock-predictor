@@ -5,6 +5,7 @@ import pudb
 from news_check.helpers.code.secrets import API_KEY
 from news_check.models import Vibe, Company
 from watson_developer_cloud import AlchemyDataNewsV1, watson_developer_cloud_service
+from textblob import TextBlob
 
 
 class GetApi:
@@ -214,14 +215,8 @@ class Algorithm:
     takes dictionary from TextFile
     gets happy and sad text count
     """
-    def __init__(self, dictionary):
+    def __init__(self, dictionary, algorithm):
         self.dictionary = dictionary
-        self.happy = self.get_words('news_check/helpers/data/happy.txt')
-        self.sad = self.get_words('news_check/helpers/data/sad.txt')
-        self.happy_text_count = self.check_emotion(self.dictionary['text'], self.happy)
-        self.happy_title_count = self.check_emotion(self.dictionary['titles'], self.happy)
-        self.sad_text_count = self.check_emotion(self.dictionary['text'], self.sad)
-        self.sad_title_count = self.check_emotion(self.dictionary['titles'], self.sad)
 
     # 16
     def get_words(self, filename):
@@ -243,6 +238,23 @@ class Algorithm:
             if word in emotion:
                 count += 1
         return count
+
+    def jeff(self):
+        self.happy = self.get_words('news_check/helpers/data/happy.txt')
+        self.sad = self.get_words('news_check/helpers/data/sad.txt')
+        self.happy_text_count = self.check_emotion(self.dictionary['text'], self.happy)
+        self.happy_title_count = self.check_emotion(self.dictionary['titles'], self.happy)
+        self.sad_text_count = self.check_emotion(self.dictionary['text'], self.sad)
+        self.sad_title_count = self.check_emotion(self.dictionary['titles'], self.sad)
+
+    def text_blob(self):
+        text = self.join_words(self.dictionary['text'])
+        titles = self.join_words(self.dictionary['titles'])
+        self.blob_title_score = TextBlob(text).sentiment.polarity
+        self.blob_text_score = TextBlob(titles).sentiment.polarity
+
+    def join_words(self, list_of_words):
+        return " ".join(list_of_words)
 
     # # 18
     # def update_company(self, company):
@@ -302,7 +314,9 @@ class SaveToDB:
             happy_text_count=self.stats.happy_text_count,
             happy_title_count=self.stats.happy_title_count,
             sad_text_count=self.stats.sad_text_count,
-            sad_title_count=self.stats.sad_title_count
+            sad_title_count=self.stats.sad_title_count,
+            blob_title_score=self.stats.blob_title_score,
+            blob_text_score=self.stats.blob_text_score
         )
         # add company to vibe
         vibe.company = company
@@ -324,11 +338,11 @@ class RunData:
     def run(self):
         # get api
         if self.source == "api":
-            self.run_api()
+            return self.run_api()
         elif self.source == "txt":
-            self.run_txt()
+            return self.run_txt()
         elif self.source == "pip":
-            self.run_pip()
+            return self.run_pip()
         else:
             raise ValueError('invalid source argument')
 
@@ -337,30 +351,39 @@ class RunData:
             api = GetApi(source=self.source, txt_file="news_check/helpers/data/test_pip_data.json").run_api()
             text_titles = TextTitle(api).text_and_title_for_company()
             algorithm = Algorithm(text_titles)
-            print(dir(algorithm))
+            algorithm.jeff()
+            algorithm.text_blob()
             if self.save:
-                algorithm.save_to_db()
+                SaveToDB(algorithm, self.company).save_to_db()
+            return True
         except Exception as e:
             print(e)
+            return False
 
     def run_pip(self):
         try:
             api = GetApi(source=self.source, company=self.company).run_api()
             text_titles = TextTitle(api).text_and_title_for_company()
             algorithm = Algorithm(text_titles)
-            print(dir(algorithm))
+            algorithm.jeff()
+            algorithm.text_blob()
             if self.save:
-                algorithm.save_to_db()
+                SaveToDB(algorithm, self.company).save_to_db()
+            return True
         except watson_developer_cloud_service.WatsonException as e:
             print(e)
+            return False
 
     def run_api(self):
         try:
             api = GetApi(source=self.source, company=self.company).run_api()
             text_titles = TextTitle(api).text_and_title_for_company()
             algorithm = Algorithm(text_titles)
-            print(dir(algorithm))
+            algorithm.jeff()
+            algorithm.text_blob()
             if self.save:
-                algorithm.save_to_db()
+                SaveToDB(algorithm1, self.company).save_to_db()
+            return True
         except TypeError as e:
             print(e)
+            return False

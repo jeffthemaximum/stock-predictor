@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from news_check.models import Company, Vibe
-from news_check.api_get import update_company
+# from news_check.api_get import update_company
+from news_check.api_get_v2 import *
 from django.utils.timezone import utc
 import datetime
 
@@ -47,14 +48,30 @@ def update_vibe(request, symbol):
     # add messages to display about updated or not
     time_diff = 216000
     company = Company.objects.get(symbol=symbol)
-    try:
+    # check if vibe has ever been calculated
+    if Vibe.objects.filter(company=company).exists():
+        # if other vibes exist, check how recently
         vibe = Vibe.objects.filter(company=company).latest('updated_at')
+        # if it's been a while
         if get_time_diff(vibe.updated_at) > time_diff:
-            update_company(company.full_name)
-    except:
-        update_company(company.full_name)
-    # set session so that you can get company symbol back out in detail
-    request.session["symbol"] = company.symbol
+            try:
+                # try to get new data
+                RunData(source="pip", company=company.full_name, save=True).run()
+            # ideally catch exception and try api method
+            except Exception as e:
+                # if error, print it
+                print(e)
+    else:
+        # try to get new data
+        check = RunData(source="pip", company=company.full_name, save=True).run()
+        print("pip not working in view")
+        # ideally catch exception and try api method
+        if check is False:
+            check = RunData(source="api", company=company.full_name, save=True).run()
+            print("api not working in view")
+        if check is False:
+            print("api and pip both failed for " + company.full_name)
+
     return redirect("company:detail", symbol=symbol)
 
 
