@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}
+    Vibes - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h1>Vibes!</h1>
+    <h2>Vibes:</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Company</th>
+                    <th>happy_title_count</th>
+                    <th>happy_text_count</th>
+                    <th>sad_title_count</th>
+                    <th>sad_text_count</th>
+                    <th>blob_text_score</th>
+                    <th>blob_title_score</th>
+                    <th>updated_at</th>
+                </tr>
+            </thead>
+        <tbody>
+            {% for vibe in vibes %}
+            <tr>
+                <th scope="row">{{ vibe.id }}</th>
+                <td>{{ vibe.company.full_name }}</td>
+                <td>{{ vibe.happy_title_count }}</td>
+                <td>{{ vibe.happy_text_count }}</td>
+                <td>{{ vibe.sad_title_count }}</td>
+                <td>{{ vibe.sad_text_count }}</td>
+                <td>{{ vibe.blob_text_score }}</td>
+                <td>{{ vibe.blob_title_score }}</td>
+                <td>{{ vibe.updated_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>    
+</div>
+{% endblock content %}

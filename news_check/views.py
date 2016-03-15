@@ -1,3 +1,4 @@
+from django.views.generic.list import ListView
 from django.shortcuts import render, redirect
 from news_check.models import Company, Vibe
 # from news_check.api_get import update_company
@@ -73,6 +74,17 @@ def update_vibe(request, symbol):
             print("api and pip both failed for " + company.full_name)
 
     return redirect("company:detail", symbol=symbol)
+
+
+class VibeView(ListView):
+    model = Vibe
+    context_object_name = "vibes"
+    template_name = 'vibe/list.html'
+    queryset = Vibe.objects.all().order_by("-updated_at")
+    # paginate_by = 24
+
+    # def get_queryset(self):
+    #     return Vibe.objects.all()
 
 
 def get_time_diff(time):
