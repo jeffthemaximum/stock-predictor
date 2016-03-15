@@ -33,6 +33,8 @@ class Vibe(models.Model):
     happy_text_count = models.IntegerField(default=0)
     sad_title_count = models.IntegerField(default=0)
     sad_text_count = models.IntegerField(default=0)
+    blob_text_score = models.DecimalField(max_digits=11, decimal_places=10, default=0)
+    blob_title_score = models.DecimalField(max_digits=11, decimal_places=10, default=0)
     updated_at = models.DateTimeField(default=timezone.now)
     company = models.ForeignKey(Company)
 

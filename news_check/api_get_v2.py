@@ -215,7 +215,7 @@ class Algorithm:
     takes dictionary from TextFile
     gets happy and sad text count
     """
-    def __init__(self, dictionary, algorithm):
+    def __init__(self, dictionary):
         self.dictionary = dictionary
 
     # 16
@@ -373,6 +373,9 @@ class RunData:
         except watson_developer_cloud_service.WatsonException as e:
             print(e)
             return False
+        except TypeError as e:
+            print("pip " + str(e))
+            return False
 
     def run_api(self):
         try:
@@ -382,7 +385,7 @@ class RunData:
             algorithm.jeff()
             algorithm.text_blob()
             if self.save:
-                SaveToDB(algorithm1, self.company).save_to_db()
+                SaveToDB(algorithm, self.company).save_to_db()
             return True
         except TypeError as e:
             print(e)

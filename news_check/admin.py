@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # import models
-from news_check.models import Company
+from news_check.models import Company, Vibe
 
 
 # setup automated slug creation
@@ -12,3 +12,4 @@ class CompanyAdmin(admin.ModelAdmin):
 
 # register it
 admin.site.register(Company, CompanyAdmin)
+admin.site.register(Vibe)
