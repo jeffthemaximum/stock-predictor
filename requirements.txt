@@ -1,4 +1,8 @@
+amqp==1.4.9
+anyjson==0.3.3
+billiard==3.3.0.23
 bottle==0.12.9
+celery==3.1.18
 dj-database-url==0.4.0
 dj-static==0.0.6
 Django==1.9.2
@@ -8,6 +12,7 @@ django-debug-toolbar==1.4
 django-mptt==0.8.0
 django-toolbelt==0.0.1
 gunicorn==19.4.5
+kombu==3.0.34
 mistune==0.7.1
 nltk==3.2
 psycopg2==2.6.1
@@ -15,6 +20,7 @@ pudb==2015.4.1
 Pygments==2.0.2
 pysolr==3.4.0
 pytz==2015.7
+redis==2.10.3
 requests==2.8.1
 six==1.10.0
 sqlparse==0.1.18
