@@ -69,7 +69,6 @@ def update_vibe(request, symbol):
         # ideally catch exception and try api method
         if check is False:
             check = RunData(source="api", company=company.full_name, save=True).run()
-            print("api not working in view")
         if check is False:
             print("api and pip both failed for " + company.full_name)
 

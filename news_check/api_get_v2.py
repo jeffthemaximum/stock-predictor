@@ -2,7 +2,7 @@ import requests
 import json
 import re
 import pudb
-from news_check.helpers.code.secrets import API_KEY
+from news_check.helpers.code.secrets import KEYS
 from news_check.models import Vibe, Company
 from watson_developer_cloud import AlchemyDataNewsV1, watson_developer_cloud_service
 from textblob import TextBlob
@@ -14,11 +14,12 @@ class GetApi:
     company is needed for "api" and "pip"
     returns json str to get sent to TextTitle
     """
-    def __init__(self, source, company=None, txt_file=None):
+    def __init__(self, source, api_key, company=None, txt_file=None):
         self.source = source
         # self.variables = variables
         self.company = company
         self.txt_file = txt_file
+        self.api_key = api_key
 
     def run_api(self):
         if self.source == "api":
@@ -36,7 +37,8 @@ class GetApi:
         returns a json object from api with title, text, and keywords for
         10 most recent articles about a company
         """
-        api = ApiHelpers()
+
+        api = ApiHelpers(api_key=self.api_key)
         my_dict = api.get_api_string_by_keyword(self.company)
         api_str = api.build_api_string(**my_dict)
         json_str = api.call_api(api_str)
@@ -51,7 +53,7 @@ class GetApi:
 
     # 19
     def get_pip(self):
-        api = ApiHelpers()
+        api = ApiHelpers(api_key=self.api_key)
         alchemy_data_news = AlchemyDataNewsV1(api_key='76cba35232ea666b22a856d1150c71978eab16be')
         if ' ' in self.company:
             api = ApiHelpers()
@@ -71,8 +73,8 @@ class GetApi:
 
 class ApiHelpers:
 
-    def __init__(self):
-        pass
+    def __init__(self, api_key):
+        self.api_key = api_key
 
     # 1
     def build_api_string(*args, **kwargs):
@@ -96,26 +98,25 @@ class ApiHelpers:
         cuz thats how alchemy needs it
         """
         my_lst = my_str.split()
-        alchemy_str = 'A['
+        alchemy_str = '('
         for i in range(len(my_lst)):
-            alchemy_str += my_lst[i]
+            alchemy_str += '(' + my_lst[i] + ')'
             if i != len(my_lst) - 1:
-                alchemy_str += '^'
-        alchemy_str += ']'
-        return alchemy_str
+                alchemy_str += "%26%26"
+        return alchemy_str + ')'
 
     # 4
     def get_api_string_by_keyword(self, keyword):
         keyword = self.build_multi_company_query_param(keyword) if ' ' in keyword else keyword
         my_dict = {}
-        my_dict['output'] = 'outputMode=json'
-        my_dict['start'] = 'start=now-30d'
+        my_dict['output'] = 'outputMode=json&outputMode=json'
+        my_dict['start'] = 'start=now-7d'
         my_dict['end'] = 'end=now'
-        my_dict['count'] = 'count=10'
-        my_dict['query'] = 'q.enriched.url.enrichedTitle.entities.entity=|text='
-        my_dict['query'] += keyword + ',type=company|'
-        my_dict['return_data'] = 'return=enriched.url.url,enriched.url.title,enriched.url.text'  # ,enriched.url.keywords'
-        my_dict['apikey'] = 'apikey=' + API_KEY
+        my_dict['count'] = 'maxResults=10'
+        my_dict['query'] = 'q.enriched.url.enrichedTitle.keywords.keyword.text='
+        my_dict['query'] += keyword
+        my_dict['return_data'] = 'return=enriched.url.title,enriched.url.text'  # ,enriched.url.keywords'
+        my_dict['apikey'] = 'apikey=' + self.api_key
         return my_dict
 
     # 5
@@ -149,9 +150,10 @@ class TextTitle:
                 titles = []
                 texts = []
                 for nugget in data:
-                    start = nugget['source']['enriched']['url']
-                    texts.append(start['text'])
-                    titles.append(start['title'])
+                    if 'enriched' in nugget['source']:
+                        start = nugget['source']['enriched']['url']
+                        texts.append(start['text'])
+                        titles.append(start['title'])
                 return {'titles': titles, 'texts': texts}
         else:
             return False
@@ -378,15 +380,30 @@ class RunData:
             return False
 
     def run_api(self):
-        try:
-            api = GetApi(source=self.source, company=self.company).run_api()
-            text_titles = TextTitle(api).text_and_title_for_company()
-            algorithm = Algorithm(text_titles)
-            algorithm.jeff()
-            algorithm.text_blob()
-            if self.save:
-                SaveToDB(algorithm, self.company).save_to_db()
-            return True
-        except TypeError as e:
-            print(e)
-            return False
+        i = 0
+        while i <= (len(KEYS) - 1):
+            api = GetApi(source=self.source, company=self.company, api_key=KEYS[i]).run_api()
+            # check if daily transaction reached
+            if 'result' in api:
+                if 'docs' in api['result']:
+                    text_titles = TextTitle(api).text_and_title_for_company()
+                    algorithm = Algorithm(text_titles)
+                    algorithm.jeff()
+                    algorithm.text_blob()
+                    if self.save:
+                        SaveToDB(algorithm, self.company).save_to_db()
+                    return True
+                else:
+                    # else for no data returned
+                    print("no data returned")
+                    company = Company.objects.get(full_name=self.company)
+                    cid = company.id + 1
+                    company_object = Company.objects.get(id=cid)
+                    self.company = company_object.full_name
+            else:
+                # else for daily transaction met
+                print("daily transaction met for " + str(i))
+                i += 1
+        # except TypeError as e:
+        #     print(e)
+        #     return False
